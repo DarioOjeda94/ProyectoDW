@@ -1,4 +1,6 @@
 
+// Funcion que muestra los autos en la pagina!
+
 function listadoDeAutos (autos) {  
     let htmlContentToAppend = "";
 
@@ -28,7 +30,7 @@ function listadoDeAutos (autos) {
     
 
 }
-
+    //  mostrar datos 
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(AUTOS_URL).then(function(resultObj)

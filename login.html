@@ -9,35 +9,50 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Link de autenticacion de gooogle -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="192317670378-1u7okctgf2i5d9knp4pqqqtfh7ih4knt.apps.googleusercontent.com">
+ 
   <style>
     .cuadro {
      width: 50%;
      margin-left: auto;
      margin-right: auto;
-     background-color: rgb(236, 228, 228);
+     background-color: rgb(236, 253, 253);
+     border-radius: 15px;
     }
+    body{
+      background-color:black;
+    }
+
+
   </style>
 </head>
 
 <body> 
+
+  <!-- Cuadro de registro, email y contraseña 
+   -->
+<div class="conteiner" id="centro">
   
-
-  <div class="text-center">
-    <img src="img/login.png" width="400px"  alt="Imagen de login"></div>
- </div>
- <br>
-
- <h2 class="text-center py-5 " > Inicio de sesión </h2>
-
-  <div class="container text-center">
+ 
+ <div class="container text-center">
    <div class="cuadro">
+    <div class="text-center" id="imagen">
+      <img src="img/login.png" width="400px"  alt="Imagen de login" ></div>
+  
+    <h2 class="text-center py-5 " id="ingresar" > Inicio de sesión </h2> <br>
+    <!-- boton de login con google -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
       <label for="username">Usuario <input type="text" id="username" name="username" class="form-control"></label><br>
       <label for="password">Contraseña <input type="password" id="contraseña" name="contraseña" class="form-control"></label><br><br>
 
-      <button class="btn btn-primary " id="inicio">Ingresar</button>
+      <button class="btn btn-primary" id="inicio">Ingresar</button>
    </div>
-
   </div>
+  </div>
+</div>
   
   <footer class="text-muted">
     <div class="container">
@@ -53,39 +68,3 @@
 </body>
 
 </html>
-
-
-
-<!-- <div class="conteiner">
-    <div class="row">
-      <div class="col">
-        <!-- Aca va un estilo al final  -->
-      <!-- </div> 
-      <div class="text-center">
-        <img src="img/login.png" width="400px"  alt="Imagen de login"></div>
-     </div>
-
-     <h2 class="text-center py-5 " > Inicio de sesión </h2>
-
-             <!-- LOGIN -->
-
-     <!-- <form action="#" style="margin-left: 2cm;">
-      <div class="mb-4">
-      <label for="email" class="form-label text-center container" >Correo electronico</label>
-     <input type="email" class="form-control text-center" style="width: 200px; margin-left: 13cm;" name="email" required>
-     </div>
-     <div> -->
-      <!-- <label for="password" class="form-label text-center container" >Contraseña</label>
-     <input id="contraseña" type="password" class="form-control" style="width: 200px; margin-left: 13cm;" name="contraseña" required>
-     </div>
-     <div class="mb-4 form-check">
-      <input type="checkbox" name="ingresaste" class="form-check-input">
-       <label for="connected" class="form-check-label">Mantenerme conectado</label> -->
-    <!-- </div>
-    <div>
-      <button type="submit" class="btn btn-primary">Ingresar</button>
-
-     -->
-    <!-- </div> -->
-    <!-- </form>
-  </div> --> 

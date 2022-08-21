@@ -11,4 +11,10 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+    
+    //  Guardar datos en el servidor
+    
+    let usuario = localStorage.getItem("user");
+    document.getElementById("usuario").innerHTML=usuario;
+
 });
