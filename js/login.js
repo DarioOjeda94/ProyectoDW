@@ -8,17 +8,18 @@ function login(){
     if (usuario === "" || contraseña === ""){
         Swal.fire("Debe ingresar usuario y contraseña");
     } else {
-        localStorage.setItem("user", usuario)
+        sessionStorage.setItem("user", usuario)
         location.href = "index.html";
     }
     
     }
+
+    
     
     document.addEventListener("DOMContentLoaded", function() {
     
         document.getElementById("inicio").addEventListener("click", function(){
             login();
         })
-    
-    
+        
     })
