@@ -5,8 +5,9 @@ const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
 const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
-const AUTOS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 const EXT_TYPE = ".json";
+const AUTOS_URL = PRODUCTS_URL  + "101" + EXT_TYPE
+// PRODUCTS_URL+localStorage.getItem("CatID")+EXT_TYPE
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -40,3 +41,7 @@ let getJSONData = function(url){
         return result;
     });
 }
+      // MOSTRAR USUARIO LOGEADO EN TODAS LAS PESTAÑAS
+
+let usuario = sessionStorage.getItem("user"); 
+     document.getElementById("username").innerHTML = usuario

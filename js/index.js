@@ -10,11 +10,7 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("muebles").addEventListener("click", function() {
         localStorage.setItem("catID", 103);
         window.location = "products.html"
-    });
-      //  Guardar datos en el servidor
-    
-      let usuario = sessionStorage.getItem("user"); 
-     document.getElementById("username").innerHTML = usuario
+    }); 
        
     })
 
