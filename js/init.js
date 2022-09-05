@@ -6,7 +6,7 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/prod
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
-const AUTOS_URL = PRODUCTS_URL  + "101" + EXT_TYPE
+// const AUTOS_URL = PRODUCTS_URL  + "101" + EXT_TYPE
 // PRODUCTS_URL+localStorage.getItem("CatID")+EXT_TYPE
 
 let showSpinner = function(){

@@ -1,36 +1,74 @@
+const ASCENDENTE = [];
+const DESCENDENTE = [];
+const PROD_VENDIDOS = "Cant.";
+let productArray = [];
+let currentSortCriteria = undefined;
+let minCount = undefined;
+let maxCount = undefined;
+
+// esta funcion ordena
+
+function sortProduct(criteria, array){
+    let result = [];
+    if (criteria === PROD_VENDIDOS){
+        result = array.sort((a, b) => b.soldCount - a.soldCount);
+    }else if (criteria === ASCENDENTE){
+        result = array.sort((a, b)=> b.cost - a.cost);
+    }else if (criteria === DESCENDENTE){
+        result = array.sort((a, b)=> a.cost - b.cost);
+    }
+    return result;
+}
 
 // Funcion que muestra los autos en la pagina!
 let arrayProductos = [];  
 
-function mostrar (autos) {  
+function mostrar (productos) {  
     let htmlContentToAppend = "";
+     
+    for(let i = 0; i < arrayProductos.length; i++){ 
+        let producto = productos[i];
 
-    for(let auto of autos){ 
-
+          
+        if (((minCount == undefined) || (minCount != undefined && parseInt(producto.cost) >= minCount)) &&
+        ((maxCount == undefined) || (maxCount != undefined && parseInt(producto.cost) <= maxCount))){
         htmlContentToAppend += `
         <div "class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
-                    <img src="${auto.image}" alt="product image" class="img-thumbnail">
+                    <img src="${producto.image}" alt="product image" class="img-thumbnail">
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <div class="mb-1">
-                        <h4>${auto.name} </h4>
-                        <h5>${auto.cost} ${auto.currency}</h5>  
-                        <p> ${auto.description}</p> 
+                        <h4>${producto.name} </h4>
+                        <h5>${producto.cost} ${producto.currency}</h5>  
+                        <p> ${producto.description}</p> 
                         </div>
-                     <small class="text-muted">${auto.soldCount} vendidos </small> 
+                     <small class="text-muted">${producto.soldCount} vendidos </small> 
                     </div>
 
                 </div>
             </div>
         </div>
         `
-        
-        document.getElementById("cars").innerHTML = htmlContentToAppend;
+    }
+        document.getElementById("productos").innerHTML = htmlContentToAppend;
     } 
 
+}
+
+function ordenarMostrarProductos(criterio, productsArray){
+    currentSortCriteria = criterio;
+
+    if(productsArray != undefined){
+        productArray = productsArray;
+    }
+
+    productArray = sortProduct(currentSortCriteria, productArray);
+
+    //Muestro las categorías ordenadas
+    mostrar(productsArray);
 }
 
         //  MOSTRAR DATOS ===>
@@ -46,19 +84,22 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
 
-
+    document.getElementById("sortAsc").addEventListener("click", function(){
+        ordenarMostrarProductos(ASCENDENTE)
+    });
 
     document.getElementById("sortDesc").addEventListener("click", function(){
-        sortCategories(ORDER_DESC_BY_NAME);
+        ordenarMostrarProductos(DESCENDENTE);
     });
 
     document.getElementById("sortByCount").addEventListener("click", function(){
-        sortAndShowCategories(ORDER_BY_PROD_COUNT);
+        ordenarMostrarProductos(PROD_VENDIDOS);
     });
 
 
     
 });
+
 
         //   ELIMINAR CONTENIDO DE CAJAS DE FILTRADO
 
@@ -91,24 +132,6 @@ document.getElementById("rangeFilterCount").addEventListener("click",()=>{
 
  filtrar()
 })
-
-// // -------------- FUNCION PARA ORDENAR ====>
-
-// document.getElementById("sortAsc").addEventListener("click", function(){
-
-//     function ordenar(){
-
-//     }
-
-
-// });
-
-// let ordenar = arrayProductos
-
-// ordenar.sort((a,b) )
-
- 
-
 
 
 
