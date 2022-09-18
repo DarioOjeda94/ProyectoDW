@@ -19,6 +19,13 @@ function sortProduct(criteria, array){
     }
     return result;
 }
+ 
+//FUNCION PARA GUARDAR EL ID
+
+function setProductosID(id) {
+    localStorage.setItem("productosID", id);
+    window.location = "products-info.html"
+}
 
 // Funcion que muestra los autos en la pagina!
 let arrayProductos = [];  
@@ -33,7 +40,9 @@ function mostrar (productos) {
         if (((minCount == undefined) || (minCount != undefined && parseInt(producto.cost) >= minCount)) &&
         ((maxCount == undefined) || (maxCount != undefined && parseInt(producto.cost) <= maxCount))){
         htmlContentToAppend += `
-        <div "class="list-group-item list-group-item-action">
+        <div onclick="setProductosID(${producto.id})"class="list-group-item list-group-item-action cursor-active">
+        <a href="product-info.html?producto= ` + producto.name + `"class="list-group-item list-group-item-action>
+        <div onclick="setProductosID(${producto.id})"class="list-group-item list-group-item-action cursor-active">
             <div class="row">
                 <div class="col-3">
                     <img src="${producto.image}" alt="product image" class="img-thumbnail">
@@ -132,7 +141,6 @@ document.getElementById("rangeFilterCount").addEventListener("click",()=>{
 
  filtrar()
 })
-
 
 
 
