@@ -16,16 +16,25 @@
  
   <style>
     .cuadro {
-     width: 50%;
-     margin-left: auto;
-     margin-right: auto;
-     background-color: rgb(236, 253, 253);
+     background-image: url("img/fondo_degrade.jpg");
      border-radius: 15px;
+     position:absolute;
+     top: 50%;
+     left: 50%;
+     width: 400px;
+     height: 420px;
+     padding: 40px;
+     transform: translate(-50%,-50%);
     }
     body{
-      background-color:black;
+      background-image: url("img/carrito_fondo.jpg");
+      background-repeat: no-repeat;
+      background-size: cover; 
     }
-
+    .btn_submit{
+      color:black;   
+    }
+   
 
   </style>
 </head>
@@ -35,34 +44,32 @@
   <!-- Cuadro de registro, email y contraseña 
    -->
 <div class="conteiner" id="centro">
-  
- 
  <div class="container text-center">
    <div class="cuadro">
-    <div class="text-center" id="imagen">
-      <img src="img/login.png" width="400px"  alt="Imagen de login" ></div>
-  
+   <div class="login-box">
     <h2 class="text-center py-5 " id="ingresar" > Inicio de sesión </h2> <br>
     <!-- boton de login con google -->
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <!-- ---------- -->
-      <label for="username">Usuario <input type="text" id="username" name="username" class="form-control"></label><br>
+    
+      <label for="username">Usuario <input type="text" id="username" name="username" class="form-control "></label><br>
       <label for="password">Contraseña <input type="password" id="contraseña" name="contraseña" class="form-control"></label><br><br>
 
-      <button class="btn btn-primary" id="inicio">Ingresar</button>
+      <button class="btn btn-info" id="inicio">Ingresar</button>
+    </div>
    </div>
   </div>
   </div>
-</div>
+
   
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
-        <a href="#">Volver arriba</a>
+        <!-- <a href="#">Volver arriba</a> -->
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      <!-- <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
+        2022</p> -->
+      <!-- <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p> -->
     </div>
   </footer>
   <script src="js/login.js"></script>

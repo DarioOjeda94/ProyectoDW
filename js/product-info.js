@@ -85,6 +85,7 @@ function verProductos(producto){
                 imagenes = resultObj.data
                verProductos(imagenes);
                console.log(imagenes)
+               mostrarRelacionados(arreglo)
             }
             
         });
@@ -100,3 +101,43 @@ function verProductos(producto){
         
         
     });
+      
+    // Variable que te da el array de la informacion de los productos -------->
+
+    let productosInfo = PRODUCT_INFO_URL + productID + EXT_TYPE 
+// productosInfo.relatedProducts ----> este es el arreglo de los productos relacionados, hay que recorrerlo e 
+//                                     imprimir nombre e imagen 
+
+    function mostrarRelacionados(){
+        let htmlContentToAppend = ""
+           for(let i=productosInfo.relatedProducts; i<arreglo.length; i++){
+            let relacionados = arreglo[i]
+             
+            htmlContentToAppend+=
+                ` <div class="row">+${relacionados.image}+</div>
+                <h5 class="text-center">${relacionados.name}</h5>
+                `
+        }
+       document.getElementById("relacionados").innerHTML = htmlContentToAppend
+    }
+       
+    // function comentarios(){
+    //     let htmlContentToAppend=""
+    //     for(let i = 0; i < array.length; i++){
+    //         let comentario= array[i];
+
+    //         htmlContentToAppend+= `
+    //         <div class="row">
+    //             <div class="col">
+    //             <h5> ${comentario.user}  </h5>
+    //             <p>${mostrarEstrellas(comentario.score)} | ${comentario.dateTime}</p>
+    //             <p>${comentario.description}</p>
+    //             </div>
+    //         </div>
+    //         `
+    //         document.getElementById("comentarios").innerHTML = htmlContentToAppend;
+    //     }
+
+    // }
+
+       
