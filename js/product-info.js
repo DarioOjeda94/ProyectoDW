@@ -71,6 +71,12 @@ function verProductos(producto){
     }
     return estrellas;
 }
+      //Funcion que guarda los a ID de los articulos para luego mostrarlos en productos relacionados ------->
+      function setArticulosID(id) {
+    localStorage.setItem("productosID", id);
+    window.location = "products-info.html"
+      }
+
 
     //-----Variable que toma los datos de los productos -----
     let productID = localStorage.getItem("productosID")
@@ -85,7 +91,8 @@ function verProductos(producto){
                 imagenes = resultObj.data
                verProductos(imagenes);
                console.log(imagenes)
-               mostrarRelacionados(arreglo)
+               mostrarRelacionados(imagenes)
+              
             }
             
         });
@@ -104,40 +111,24 @@ function verProductos(producto){
       
     // Variable que te da el array de la informacion de los productos -------->
 
-    let productosInfo = PRODUCT_INFO_URL + productID + EXT_TYPE 
-// productosInfo.relatedProducts ----> este es el arreglo de los productos relacionados, hay que recorrerlo e 
-//                                     imprimir nombre e imagen 
+    let productosInfo = PRODUCT_INFO_URL + productID + EXT_TYPE                               
 
-    function mostrarRelacionados(){
+    function mostrarRelacionados(productosInfo){
         let htmlContentToAppend = ""
-           for(let i=productosInfo.relatedProducts; i<arreglo.length; i++){
-            let relacionados = arreglo[i]
+           for(let i=0; i<productosInfo.relatedProducts.length; i++){
+            let relacionados = productosInfo.relatedProducts[i]
              
-            htmlContentToAppend+=
-                ` <div class="row">+${relacionados.image}+</div>
-                <h5 class="text-center">${relacionados.name}</h5>
+            htmlContentToAppend+= 
+                `<div class="row" style="width:250px">
+                <div onclick="setArticulosID(${relacionados.id})"class=" list-group-item-action cursor-active">
+                 <a href="product-info.html?producto= ` + relacionados.image + `"class="cursor-active list-group-item-action">
+                  <h5 class="text-center">${relacionados.name}</h5>
+                <img src=${relacionados.image} class="img-thumbnail">
+                </div>
+                </div>
                 `
         }
        document.getElementById("relacionados").innerHTML = htmlContentToAppend
     }
-       
-    // function comentarios(){
-    //     let htmlContentToAppend=""
-    //     for(let i = 0; i < array.length; i++){
-    //         let comentario= array[i];
-
-    //         htmlContentToAppend+= `
-    //         <div class="row">
-    //             <div class="col">
-    //             <h5> ${comentario.user}  </h5>
-    //             <p>${mostrarEstrellas(comentario.score)} | ${comentario.dateTime}</p>
-    //             <p>${comentario.description}</p>
-    //             </div>
-    //         </div>
-    //         `
-    //         document.getElementById("comentarios").innerHTML = htmlContentToAppend;
-    //     }
-
-    // }
-
-       
+    
+   
