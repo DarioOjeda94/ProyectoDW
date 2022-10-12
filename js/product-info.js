@@ -131,4 +131,3 @@ function verProductos(producto){
        document.getElementById("relacionados").innerHTML = htmlContentToAppend
     }
     
-   
