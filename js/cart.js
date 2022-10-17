@@ -1,6 +1,7 @@
 const CART_URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json"
 
-let cart_products = "";
+let cart_products = [];
+
 
 function mostrarCarrito(array) {
     let htmlContentToAppend = ""
@@ -10,18 +11,13 @@ function mostrarCarrito(array) {
         htmlContentToAppend +=
             ` 
             <tr>
-            <td><img width = "100px" src=${articles.image}></td>
             
-            <td>${articles.name}</td>
-            
-            <td>${articles.currency} ${articles.unitCost}</td>
-            
-            <td><div class="sm">
-            <input id="form1" min="1" name="quantity" value="1" type="number" class="form-control" />
-            </div>
-            </td>
-            
-            <td><button type="button" class="btn btn-danger btn-sm  mb-2" data-mdb-toggle="tooltip" title="Remove item">
+            <td class="col"><img style="width:100px" src=${articles.image}></td>
+            <td class="col">${articles.name}</td>
+            <td class="col">${articles.currency} ${articles.unitCost}</td>
+            <td class="col"><input id="cantidad" min="0" name="quantity" value="1" type="number" class="size" style="width: 2cm"></td>
+            <td class="col" id="precioProd">${articles.currency} ${articles.unitCost}</td>
+            <td class="col"><button type="button" class="btn btn-danger btn-sm  mb-2" data-mdb-toggle="tooltip" title="Remove item">
                 <i class="fas fa-trash"></i>
                 </button>
             </td>
@@ -34,6 +30,15 @@ function mostrarCarrito(array) {
 }
 
 
+
+
+
+function setCarritoID(id) {
+    localStorage.setItem("productosID", id);
+    window.location = "cart.html"
+    }
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
     getJSONData(CART_URL).then(function (resultObj) {
@@ -43,22 +48,19 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(cart_products)
         }
 
+        let cantidad = document.getElementById("cantidad").value;  
+
+        document.addEventListener("change", ()=> {
+            
+            if (cantidad.value > 0){
+
+                costofinal = `${cantidad.value * articles.unitCost}`
+
+                document.getElementById("precioProd").innerHTML= costofinal
+            }
+            
+        })
+    
+
     });
 })
-
-{/* <div class="row">
-<tr class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-
-><span></span>
-<a href="#!">
-  <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-</a>
-<p class="text-start text-md-center">
-<strong></strong>
-</p> 
-
-</div>
-</div>
-
-
-</div> */}

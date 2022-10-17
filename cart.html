@@ -21,8 +21,9 @@
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
   }
-  #numero{
-    margin-left: 2cm ;
+
+  #numero {
+    margin-left: 2cm;
   }
 </style>
 
@@ -69,82 +70,63 @@
   </nav>
   <main>
     <!-- Template carrito -->
-      <section class="h-100 gradient-custom">
-        <div class="container py-5">
-          <div class="row d-flex justify-content-center my-4">
-            <div class="col-md-8">
-              <div class="card mb-4">
-                <div class="card-header py-3">
-                  <h5 class="mb-0 text-center"><strong>Mi Carrito</strong></h5>
-                </div>
-                <div class="card-body">
-                  <table>
+    <section class="h-100 gradient-custom">
+      <div class="container py-5">
+        <div class="row d-flex justify-content-center my-4">
+          <div class="col-md-8">
+            <div class="card mb-4">
+              <div class="card-header py-3">
+                <h5 class="mb-0 text-center"><strong>Mi Carrito</strong></h5>
+              </div>
+              <div class="card-body table-borderless">
+                <table>
+                  <thead>
                     <tr>
-                      <th><strong>Producto</strong></th>
-                      <th><strong>Nombre</strong></th>
-                      <th><strong>Costo</strong></th>
-                      <th><strong>Cantidad</strong></th>
-                      <th><strong>Eliminar</strong></th>
+                      <th class="col"></th>
+                      <th class="col" ><strong>Nombre</strong></th>
+                      <th class="col"><strong>Costo</strong></th>
+                      <th class="col"><strong>Cantidad</strong></th>
+                      <th class="col"><strong>Subtotal</strong></th>
+                      <th class="col"><strong>Eliminar</strong></th>
                     </tr>
-                    <tbody id="productoImagen">
-                    </tbody>
-                  </table>
-                  <!-- <div class="float-end" ></div>
-                  <div class="col-lg-5 col-md-6 mb-4 mb-lg-0"></div> -->
-                </div>
+                  </thead>
+                  <tbody id="productoImagen">
+                  </tbody>
+                </table>
+              </div>
+              <hr>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card mb-4 card-body">
+              <div class="card-body ">
+                <h5><strong>Tipo de envío</strong></h5>
                 <hr>
               </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-4 card-body">
-                <div class="card-body ">
-                  <h5><strong>Tipo de envío</strong></h5>
-                  <hr>
-                </div>
-                <div>
-                  <input type="radio" name="envío" id="">Premium 2 a 5 días (15%)<br>
-                  <input type="radio" name="envío" id="">Express 5 a 8 días (7%)<br>
-                  <input type="radio" name="envío" id="">Standard 12 a 15 días (5%)
-                </div><br>
-                <h5><strong>Dirección de envío</strong></h5>
-                <br>
-                <div>
-                  <input type="text" placeholder="Calle">
-                  <input type="text" placeholder="Numero" id="numero"><br><br>
-                  <input type="text" placeholder="Esquina">
-                </div>
+              <div>
+                <input type="radio" name="envío" id="">Premium 2 a 5 días (15%)<br>
+                <input type="radio" name="envío" id="">Express 5 a 8 días (7%)<br>
+                <input type="radio" name="envío" id="">Standard 12 a 15 días (5%)
+              </div><br>
+              <h5><strong>Dirección de envío</strong></h5>
+              <br>
+              <div>
+                <input type="text" placeholder="Calle">
+                <input type="text" placeholder="Numero" id="numero"><br><br>
+                <input type="text" placeholder="Esquina">
               </div>
             </div>
-        
+          </div>
+
           <div class="col-md-8">
             <div class="card mb-4 card-body">
               <div class="card-body">
-                <h5>Subtotal</h5>
+                <h5>Total</h5>
                 <hr>
               </div>
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                    Products
-                    <span>$53.98</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                    Shipping
-                    <span>Gratis</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                    <div>
-                      <strong>Total amount</strong>
-                      <strong>
-                        <p class="mb-0">(including VAT)</p>
-                      </strong>
-                    </div>
-                    <span><strong>$53.98</strong></span>
-                  </li>
-                </ul>
-                <button type="button" class="btn btn-primary btn-lg btn-block">
-                  Go to checkout
-                </button>
+
+              <div>
+                <p>Precio Total: $<span id="precioTotal">0 </span></p>
               </div>
             </div>
           </div>

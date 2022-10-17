@@ -13,18 +13,33 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <style>
-  .checked {
-        color:orange;     
-    }
-    .coment  {
-      margin-left: 5px;
-    }
-    .btnCart { 
-      width: 100%;
-    }
+  .gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
 
-       
- </style>
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+  }
+
+  .checked {
+    color: orange;
+  }
+
+  .coment {
+    margin-left: 5px;
+  }
+
+  .btnCart {
+    width: 100%;
+  }
+
+  .cuadrosTexto {
+    border-style: solid;
+  }
+</style>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
@@ -48,14 +63,18 @@
             <a class="nav-link text-success" href="login.html">Login</a>
           </li>
           <div class="btn-group">
-            <button type="button" id="username" class="btn btn-dark nav-link"><a href="login.html"></a>Iniciar sesion</button>
-            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <button type="button" id="username" class="btn btn-dark nav-link"><a href="login.html"></a>Iniciar
+              sesion</button>
+            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+              aria-expanded="false">
               <span class="visually-hidden">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
               <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
             </ul>
           </div>
@@ -64,55 +83,70 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="row"> 
-          <div class="list-group" id="contenedor">
+    <section class="h-100 gradient-custom">
+      <div class="container py-5">
+        <div class="row d-flex justify-content-center my-4">
+          <div class=" col-md-8">
+            <div class="card mb-4">
+              <div class="list-group" id="contenedor">
 
+              </div>
+            </div>
           </div>
-      </div>
-  </div><br>
-  <div>
-    <input type="button" class="btn btn-success" value="Agregar al carrito" style="width: 50%; margin-left: 7cm;">
-    <a href="cart.html"></a>
-  </div>
-  <br> 
-  <h3 class="text-center border-danger">Comentarios</h3> <hr>
-    <ul id="comentarios">
-    </ul>
-     <div id="coment">
-     <h4>Comentar</h4> <br>
-       <font style="vertical-align:inherit">
-       <font style="vertical-align:inherit" >Nombre:</font>
-      </font>
-     <input type="text" id="nombre" >
-    <br>
-    <font style="vertical-align:inherit">
-      <font style="vertical-align:middle" >Comentario:</font>
-     </font>
-    <textarea id="comentario"></textarea><br><br>
-    <p>Seleccione el puntaje </p>
-     <select  id="puntaje">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-     </select>
-     <br><br>
+          <br>
+          <br>
+          <div class="col-md-8">
+            <div class="card mb-4">
+              <h3 class="text-center card-header py-3">Comentarios</h3>
+              <ul style="margin-top: 1cm;" id="comentarios">
+              </ul>
+              <hr>
+              <div id="coment" class="text-center">
+                <h5><strong>Añadir un comentario</strong></h5>
+                <br>
+                <form>
+                  <!-- Name input -->
+                  <div class="form-outline mb-4 ">
+                    <input type="text" id="form4Example1" class="form-control" placeholder="Nombre"
+                      style="width: 10cm; margin-left: 5cm;" />
+                  </div>
+                  <!-- Message input -->
+                  <div class="form-outline mb-4">
+                    <textarea class="form-control" id="form4Example3" placeholder="Comentario" rows="4"
+                      style="width:10cm; margin-left: 5cm;"></textarea>
+                  </div>
+                  <!-- calificar -->
+                  <p>Seleccione el puntaje: </p>
+                  <select id="puntaje">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select> <br><br>
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Enviar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
 
-    <button id="comentar" class="btn-success" style="vertical-align:inherit">Enviar</button>
-  </div>
-<div >
-  <h3 class="text-center">Productos Relacionados</h3>
-</div><hr>
-<div class="container">
-  <div class="d-flex justify-content-center container" > 
-      <div class="card-group" id="relacionados"> 
-
+          <!-- Productos relacionados -->
+          <div class="col-md-8">
+            <div class="card mb-4">
+          <div>
+            <h3 class="text-center card-header py-3">Productos Relacionados</h3>
+          </div>
+          <div class="container">
+            <div class="">
+              <div class="card-group" id="relacionados"></div>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
-</div>
-    
+    </section>
 
   </main>
   <footer class="text-muted">
