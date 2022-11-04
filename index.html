@@ -5,19 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>eMercado - Todo lo que busques está aquí</title>
-  
+
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-     
+    
   </head>
   <style>
-     .logout{ display: none;
-     }  
-     .username{
+    .hidden { display: none;
+    }  
+    .username{
       color: black;
-     }
-     body {
+    } 
+    body {
 /* fallback for old browsers */
 background: #6a11cb;
 
@@ -48,7 +48,7 @@ background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
             <li class="nav-item" id="ingresar">
-              <a class="nav-link text-success" href="login.html">Login</a>
+              <a class="nav-link text-success hidden" href="login.html">Login</a>
             </li>  
           </ul>
         </div>
@@ -62,7 +62,7 @@ background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 
     <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
     <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
     <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+    <li><a class="dropdown-item" id="logout" href="login.html">Cerrar sesión</a></li>
   </ul>
 </div>
            <!-- --------------------------------- -->

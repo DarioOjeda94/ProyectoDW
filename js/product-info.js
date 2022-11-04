@@ -1,8 +1,8 @@
 
-let producto = {};
-let imagenes = [];
-
-// Funcion que muestra la informacion de los productos ----->
+let producto = [];
+let imagenes = {};
+let carrito = [];
+// Funcion que muestra el array de los productos ----->
 
 function verProductos(producto) {
     let htmlContentToAppend = "";
@@ -21,13 +21,28 @@ function verProductos(producto) {
         <h3 class="text-center"> Imagenes ilustrativas </h3> <br><br>
         </div>
         <div class="row">`+ cargarFotos(producto.images) + `
-        </div> <br> 
-        <input type="button" id="Agregar_carrito" class="btn btn-success" value="Agregar al carrito"
-        style="width: 50%; margin-left: 5cm; margin-bottom: 1cm;">
-        <a href="cart.html"></a>
+        </div> <br>
+        <button onclick="agregarCarrito(imagenes)" class="btn btn-success" id ="agregar" style="width: 50%; margin-left: 5cm; margin-bottom: 1cm;"> Agregar al carrito
         `
     document.getElementById("contenedor").innerHTML = htmlContentToAppend;
+
 }
+
+
+//--------Funcion que agrega los productos al carrito ------>
+
+function agregarCarrito (id){
+    let item = document.getElementById("contenedor");
+    carrito.push(item.value)
+    localStorage.setItem("productosID", JSON.stringify(producto));
+    console.log(id)
+ 
+}
+
+
+
+
+
 // Funcion que recorre el array de imagenes y me las muestra en la pagina ----->
 
 function cargarFotos(imagenes) {
@@ -62,6 +77,8 @@ function comentarios() {
 
 }
 
+
+
 // Función que cambia la calificacion del producto por estrellas coloreadas ----->
 
 function mostrarEstrellas(score) {
@@ -76,21 +93,66 @@ function mostrarEstrellas(score) {
     }
     return estrellas;
 }
+
+//      Funcion que agrega un nuevo comentario //
+
+function agregarComentario (){
+    let dateTime = new Date();
+    let year = dateTime.getFullYear();
+    let month = dateTime.getMonth();
+    let day = dateTime.getDate();
+    let hour = dateTime.getHours();
+    let minutes = dateTime.getMinutes();
+    let seconds = dateTime.getSeconds();
+
+    if (month < 10){
+        month = 0 + month;
+    }
+    if ( day < 10){
+        day = 0 + day;
+    }
+    if (hour < 10){
+        hour = 0 + hour;
+    }
+    if (minutes < 10){
+        minutes = 0 + minutes;
+    }
+    if (seconds < 10){
+        seconds = 0 + seconds;
+    }
+
+    let nuevosComentarios = {};
+
+    nuevosComentarios.user = document.getElementById("nombre").value;
+    nuevosComentarios.description = document.getElementById("comentario").value;
+    nuevosComentarios.dateTime = `${year}/${month}/${day} ${hour}:${minutes}:${seconds}`;
+    nuevosComentarios.score = document.getElementById("puntaje").value
+
+    array.push(nuevosComentarios);
+
+
+
+}
+
+
 //Funcion que guarda los a ID de los articulos para luego mostrarlos en productos relacionados ------->
 function setArticulosID(id) {
     localStorage.setItem("productosID", id);
     window.location = "products-info.html"
 }
 
-
 //-----Variable que toma los datos de los productos -----
 let productID = localStorage.getItem("productosID")
 
 
+// Variable que te da el array de la informacion de los productos -------->
+
+let productosInfo = PRODUCT_INFO_URL + productID + EXT_TYPE
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    getJSONData(PRODUCT_INFO_URL + productID + EXT_TYPE).then(function (resultObj) {
+    getJSONData(productosInfo).then(function (resultObj) {
         if (resultObj.status === "ok") {
             imagenes = resultObj.data
             verProductos(imagenes);
@@ -99,22 +161,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
+        document.getElementById("agregar").addEventListener("click", ()=>{
+            location.href=("cart.html")
+            carrito = JSON.parse(localStorage.getItem("productosID"));
+            agregarCarrito(producto)
+            
+        })
+    
     });
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL + productID + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status === "ok") {
             array = resultObj.data
             comentarios(array)
+            console.log(array)
         }
 
-    });
+        document.getElementById("enviarComentario").addEventListener("click", ()=>{
+            agregarComentario()
+        })
+        comentarios()
+        
 
+    
+
+    });
+    
 
 });
 
-// Variable que te da el array de la informacion de los productos -------->
-
-let productosInfo = PRODUCT_INFO_URL + productID + EXT_TYPE
 
 function mostrarRelacionados(productosInfo) {
     let htmlContentToAppend = ""

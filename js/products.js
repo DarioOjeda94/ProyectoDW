@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     {
         if (resultObj.status === "ok") {
             arrayProductos = resultObj.data.products
-           mostrar(arrayProductos);
+        mostrar(arrayProductos);
         }
         
     });

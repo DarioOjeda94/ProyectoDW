@@ -23,6 +23,8 @@
         font-size: 3.5rem;
       }
     }
+    .hidden { display: none;
+    }  
   </style>
 </head>
 
@@ -45,16 +47,11 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-success" href="login.html">Login</a>
+            <a class="nav-link text-success hidden" href="login.html">Login</a>
           </li>
           <li class="nav-item" id="logout" >
             <a class="nav-link text-danger" href="login.html">Cerrar sesión</a>
           </li>
-          <!-- <li class="nav-item">
-            <p class="nav-link" id="username" ></p>
-          </li>
-          <li class="nav-item">
-          </li> -->
           <div class="btn-group">
             <button type="button" id="username" class="btn btn-dark nav-link"><a href="login.html"></a>Iniciar sesion</button>
             <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">

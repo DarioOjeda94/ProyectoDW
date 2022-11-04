@@ -9,6 +9,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
 </head>
 <style>
   .gradient-custom {
@@ -22,9 +24,15 @@
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
   }
 
-  #numero {
+  .numero {
     margin-left: 2cm;
   }
+  #codigo{
+    margin-left: 7cm;
+    margin-bottom: 4cm;
+  }
+  .hidden { display: none;
+    }  
 </style>
 
 <body>
@@ -46,7 +54,7 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-success" href="login.html">Login</a>
+            <a class="nav-link text-success hidden " href="login.html">Login</a>
           </li>
           <div class="btn-group">
             <button type="button" id="username" class="btn btn-dark nav-link"><a href="login.html"></a>Iniciar
@@ -78,21 +86,8 @@
               <div class="card-header py-3">
                 <h5 class="mb-0 text-center"><strong>Mi Carrito</strong></h5>
               </div>
-              <div class="card-body table-borderless">
-                <table>
-                  <thead>
-                    <tr>
-                      <th class="col"></th>
-                      <th class="col" ><strong>Nombre</strong></th>
-                      <th class="col"><strong>Costo</strong></th>
-                      <th class="col"><strong>Cantidad</strong></th>
-                      <th class="col"><strong>Subtotal</strong></th>
-                      <th class="col"><strong>Eliminar</strong></th>
-                    </tr>
-                  </thead>
-                  <tbody id="productoImagen">
-                  </tbody>
-                </table>
+              <div class="card-body table-borderless" id="productoImagen">
+                
               </div>
               <hr>
             </div>
@@ -104,16 +99,19 @@
                 <hr>
               </div>
               <div>
-                <input type="radio" name="envío" id="">Premium 2 a 5 días (15%)<br>
-                <input type="radio" name="envío" id="">Express 5 a 8 días (7%)<br>
-                <input type="radio" name="envío" id="">Standard 12 a 15 días (5%)
+                <input type="radio" name="envio" id="premium" value="0.15">Premium 2 a 5 días (15%)<br>
+                <input type="radio" name="envio" id="express" value="0.07">Express 5 a 8 días (7%)<br>
+                <input type="radio" name="envio" id="standard" value="0.05" checked>Standard 12 a 15 días (5%)
               </div><br>
               <h5><strong>Dirección de envío</strong></h5>
               <br>
               <div>
-                <input type="text" placeholder="Calle">
-                <input type="text" placeholder="Numero" id="numero"><br><br>
-                <input type="text" placeholder="Esquina">
+                <input type="text" placeholder="Calle" required>
+                <div class="invalid-feedback">Debe ingresar una calle</div>
+                <input type="text" placeholder="Numero" class="numero" required><br><br>
+                <div class="invalid-feedback">Debe ingresar un numero</div>
+                <input type="text" placeholder="Esquina" required>
+                <div class="invalid-feedback">Debe ingresar una esquina</div>
               </div>
             </div>
           </div>
@@ -121,13 +119,59 @@
           <div class="col-md-8">
             <div class="card mb-4 card-body">
               <div class="card-body">
-                <h5>Total</h5>
+                <h5><strong>Costos</strong></h5>
                 <hr>
               </div>
 
               <div>
-                <p>Precio Total: $<span id="precioTotal">0 </span></p>
-              </div>
+                <p>Subtotal: <span id="subTotal2"></span></p><hr>
+                <p>Costos de envío: <span id="costosDEnvio"></span></p><hr>
+                <p>Precio total: <span id="precioTotal"> </span></p>
+              </div><br>
+              <h5><strong>Forma de pago</strong></h5><br>
+              
+
+              <!-- modal de forma de pago  -->
+
+              <!-- Button trigger modal -->
+
+              <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Haz click aqui para seleccionar forma de pago</a>
+              
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"><strong>Forma de pago</strong></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <input type="radio" name="pago"> Tarjeta de credito <hr>
+                        <div class="row">
+                          <div class="col-6"> Numero de tarjeta
+                                  <input type="number" class="form-control" /> 
+                          </div>
+                          <div class="col-6"> Codigo de seg.
+                                  <input type="number" class="form-control" /> 
+                          </div>
+                      </div> <br>
+                        Vencimiento (MM/AA) <br>
+                        <input type="month" class="form-control" style="width: 5.9cm;"><br><br>
+
+                        <input type="radio" name="pago" id="">Transferencia bancaria<hr>
+                        Numero de cuenta
+                        <input type="number" class="form-control" style="width: 5.9cm;"><br>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success">Aceptar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div><br>
+                <button class="btn btn-primary" id="finalizarCompra">Finalizar compra</button>
             </div>
           </div>
         </div>
