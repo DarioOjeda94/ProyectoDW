@@ -10,6 +10,7 @@ function login(){
     } else {
         sessionStorage.setItem("user", usuario)
         location.href = "index.html";
+        document.getElementById("ingresar").style.display = "none"
     }
     
     }

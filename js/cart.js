@@ -44,13 +44,18 @@ function mostrarCarrito(array) {
             `;
     }
     document.getElementById("productoImagen").innerHTML = htmlContentToAppend;
-    
-    for(let i=0; i<borrar.length; i++){
-        borrar[i].addEventListener("click", ()=>{
-            eliminarProducto(i);
-        })
-    }
+    subtotales()
+
 }
+  /* funcion para borrar 
+for(let i=0; i<borrar.length; i++){
+    borrar[i].addEventListener("click", ()=>{
+        eliminarProducto(i);
+    })
+}
+
+*/
+
 
         /* Funcion que elimina un producto y actualiza el carrito */
 
@@ -67,39 +72,101 @@ function subtotales() {
     let cantidad = document.getElementsByName("cantidad")
     let costo = document.getElementsByName("costo")
     let subTotales = document.getElementsByName("subTotal")
+    let total = 0;
+    let subtotal = 0;
 
     for (let i=0; i<cantidad.length; i++){
         let subtotal = parseFloat(cantidad[i].value) * parseFloat(costo[i].innerHTML);
         subTotales[i].innerHTML= subtotal 
+        document.getElementById("sub").innerHTML= "USD" + subtotal;
+        
     }
+    let costoEnvio = 0;
+    for (let x=0; x< envio.length; x++){
+        if (envio[x].checked){
+            costoEnvio = subtotal * parseFloat(envio[x].value);
+        }
+    }
+    document.getElementById("precioTotal").innerHTML= parseFloat((subtotal).toFixed(2)) + parseFloat((costoEnvio).toFixed(2));
+    document.getElementById('costosDEnvio').innerText= costoEnvio;
+
+
 }
+     
+  /* funcion para mostrar el porcentaje */
 
-  /* funcion para mostrar el porcentaje 
+  let porcentaje = document.getElementsByTagName("input").value;
+ 
 
-  costoEnvio =0;
-  for (let x=0; x< envio.length; x++){
-      if (envio[x].checked){
-          costoEnvio = subtotal * parseFloat(envio[x].value);
+   function porcentajeDeEnvio () {
+    for (let x=0; x< envio.length; x++){
+        if (envio[x].checked){
+              costoEnvio = porcentaje * parseFloat(envio[x].value);
+            }
+    
           }
-
-      }
-
-      document.getElementById('costosDEnvio').innerText=(costoEnvio).toFixed(2);
-*/
-
-function calcularPorcentaje (){
-
-}
-
-
+    }
 
     function setCarritoID(id) {
         localStorage.setItem("productosID", id);
         window.location = "cart.html"
     }
 
+    /* Funcion que habilita y deshabilita las formas de pago */
+
+    function habilitar(){
+        let TB = document.getElementById("TB")
+        let TDC = document.getElementById("TDC")
+
+        if(TB.checked){
+        document.getElementById("transferencia").disabled=false;
+        document.getElementById("1").disabled=true;
+        document.getElementById("2").disabled=true;
+        document.getElementById("3").disabled=true;
+        document.getElementById("aceptar").disabled=false;
+        }
+        else{
+            if(TDC.checked){
+                document.getElementById("1").disabled=false;
+                document.getElementById("2").disabled=false;
+                document.getElementById("3").disabled=false;
+                document.getElementById("transferencia").disabled=true;
+                document.getElementById("aceptar").disabled=false;
+
+
+            }
+        }
+    }
+       
+        /* Validacion de campos de texto */
+
+    function validacion(){
+        let TDC = document.getElementById("TDC");
+        let TB = document.getElementById("TB")
+        let res = true
+
+      
+        if(!TDC.checked || !TB.checked){
+            res=false
+            document.getElementById("click-aqui").classList.add("invalid-color");
+            document.getElementById("error").style.display = "inline";
+        }
+        else {
+            document.getElementById("click-aqui").classList.remove("invalid-color");
+            document.getElementById("error").style.display = "none";
+        }
+        console.log("validacion correcta !!")
+        return res;
+    }
+      
+    function validar2(){
+        document.getElementById("click-aqui").classList.remove("invalid-color");
+        document.getElementById("error").style.display = "none";
+    }
+
 
     document.addEventListener("DOMContentLoaded", function () {
+
 
         getJSONData(CART_URL).then(function (resultObj) {
             if (resultObj.status === "ok") {
@@ -108,20 +175,40 @@ function calcularPorcentaje (){
                 console.log(cart_products)
             }
             
-            document.getElementById("finalizarCompra").addEventListener("click", ()=> {
-                Swal.fire(
-                    'Su compra ha sido realizada con exito!',
-                    '',
-                    'success'
-                )
+            document.getElementById("finalizarCompra").addEventListener("click", evento=> { 
+
+                if (!validacion() || !this.checkValidity()){
+                    evento.preventDefault();
+                    evento.stopPropagation();
+                }
+                else {
+                    Swal.fire(
+                        'Su compra ha sido realizada con exito!',
+                        '',
+                         'success'
+                          )
+
+                }
+                document.body.classList.add('was-validated');
+
+                let eventos=['change', 'input'];
+    
+                eventos.forEach( evento=> {document.body.addEventListener(evento, validacion)})
+     
+              
+                
                 
             })
             document.getElementById("eliminar").addEventListener("click", ()=>{
                 eliminarProducto()
             })
-            document.getElementById("costosDEnvio").addEventListener("click", ()=>{
-
-            })
+            document.getElementById("TB").addEventListener("click", ()=>{
+                habilitar()
+            } )
+            document.getElementById("TDC").addEventListener("click", ()=>{
+                habilitar()
+            } )
+        
         })
 
         

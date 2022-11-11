@@ -99,19 +99,25 @@
                 <hr>
               </div>
               <div>
-                <input type="radio" name="envio" id="premium" value="0.15">Premium 2 a 5 días (15%)<br>
-                <input type="radio" name="envio" id="express" value="0.07">Express 5 a 8 días (7%)<br>
-                <input type="radio" name="envio" id="standard" value="0.05" checked>Standard 12 a 15 días (5%)
+                <input type="radio" name="envio" class="porciento" value="0.15" id="premium">Premium 2 a 5 días (15%)<br>
+                <input type="radio" name="envio" class="porciento" value="0.07">Express 5 a 8 días (7%)<br>
+                <input type="radio" name="envio" class="porciento" value="0.05" checked>Standard 12 a 15 días (5%) <br>
               </div><br>
               <h5><strong>Dirección de envío</strong></h5>
               <br>
-              <div>
-                <input type="text" placeholder="Calle" required>
-                <div class="invalid-feedback">Debe ingresar una calle</div>
-                <input type="text" placeholder="Numero" class="numero" required><br><br>
-                <div class="invalid-feedback">Debe ingresar un numero</div>
-                <input type="text" placeholder="Esquina" required>
-                <div class="invalid-feedback">Debe ingresar una esquina</div>
+              <div class="needs-validation row g-1" novalidate>
+                <div class="col-sm-6">
+                  <input type="text" placeholder="Calle" id="calle" required>
+                  <div class="invalid-feedback">Debe ingresar una calle</div>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" placeholder="Numero" style="margin-right: 3cm ;" id="numero" required>
+                  <div class="invalid-feedback">Debe ingresar un numero</div>
+                </div><br><br>
+                <div class="col-sm-6">
+                  <input type="text" placeholder="Esquina" id="esquina" required>
+                  <div class="invalid-feedback">Debe ingresar una esquina</div>
+                </div>
               </div>
             </div>
           </div>
@@ -124,9 +130,9 @@
               </div>
 
               <div>
-                <p>Subtotal: <span id="subTotal2"></span></p><hr>
-                <p>Costos de envío: <span id="costosDEnvio"></span></p><hr>
-                <p>Precio total: <span id="precioTotal"> </span></p>
+                <span>Subtotal: <span id="sub" style="margin-left: 13cm;"></span></span><hr>
+                <span>Costos de envío: <span id="costosDEnvio" style="margin-left: 13cm;"></span></span><hr>
+                <span>Precio total: <span  id="precioTotal" style="margin-left: 13cm;"> </span></span>
               </div><br>
               <h5><strong>Forma de pago</strong></h5><br>
               
@@ -134,8 +140,12 @@
               <!-- modal de forma de pago  -->
 
               <!-- Button trigger modal -->
-
-              <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Haz click aqui para seleccionar forma de pago</a>
+              <div>
+                <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="click-aqui">Haz click aqui para seleccionar forma de pago</a>
+                <span class="invalid-feedback" id="error">
+                 Debe seleccionar una forma de pago  
+                </span>
+              </div>
               
 
                 <!-- Modal -->
@@ -144,29 +154,28 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel"><strong>Forma de pago</strong></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <input type="radio" name="pago"> Tarjeta de credito <hr>
+                        <input type="radio" name="pago" id="TDC" required> Tarjeta de credito <hr>
                         <div class="row">
                           <div class="col-6"> Numero de tarjeta
-                                  <input type="number" class="form-control" /> 
+                                  <input type="number" class="form-control" id="1" required disabled="" /> 
                           </div>
                           <div class="col-6"> Codigo de seg.
-                                  <input type="number" class="form-control" /> 
+                                  <input type="number" class="form-control" id="2" required disabled=""/> 
                           </div>
                       </div> <br>
                         Vencimiento (MM/AA) <br>
-                        <input type="month" class="form-control" style="width: 5.9cm;"><br><br>
+                        <input type="month" class="form-control" id="3" style="width: 5.9cm;" required disabled=""><br><br>
 
-                        <input type="radio" name="pago" id="">Transferencia bancaria<hr>
+                        <input type="radio" name="pago" id="TB" required>Transferencia bancaria<hr>
                         Numero de cuenta
-                        <input type="number" class="form-control" style="width: 5.9cm;"><br>
+                        <input type="number" class="form-control" id="transferencia" style="width: 5.9cm;" required disabled=""><br>
 
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-success">Aceptar</button>
+                        <button type="button" class="btn btn-success" id="aceptar" data-bs-dismiss="modal" disabled="">Aceptar</button>
                       </div>
                     </div>
                   </div>
