@@ -69,31 +69,32 @@ function eliminarProducto(i){
 
 function subtotales() {
     
-    let cantidad = document.getElementsByName("cantidad")
-    let costo = document.getElementsByName("costo")
-    let subTotales = document.getElementsByName("subTotal")
-    let total = 0;
+    let cantidad = document.getElementsByName("cantidad");
+    let costo = document.getElementsByName("costo");
+    let subTotales = document.getElementsByName("subTotal");
+    let envio = document.getElementsByName("envio");
     let subtotal = 0;
+    let costoEnvio = 0
 
     for (let i=0; i<cantidad.length; i++){
-        let subtotal = parseFloat(cantidad[i].value) * parseFloat(costo[i].innerHTML);
-        subTotales[i].innerHTML= subtotal 
-        document.getElementById("sub").innerHTML= "USD" + subtotal;
+        subTotales[i].innerHTML = parseFloat(costo[i].innerHTML) * parseFloat(cantidad[i].value);
+        subtotal +=parseFloat(costo[i].innerHTML) * parseFloat(cantidad[i].value);
         
     }
-    let costoEnvio = 0;
-    for (let x=0; x< envio.length; x++){
-        if (envio[x].checked){
-            costoEnvio = subtotal * parseFloat(envio[x].value);
+    
+    for (let tipo of envio){
+        if (tipo.checked){
+            costoEnvio = subtotal * tipo.value;       
         }
+       let total = subtotal + costoEnvio;
+       document.getElementById("sub").innerHTML = "$" + subtotal
+    document.getElementById("precioTotal").innerHTML= "$" + total
+    document.getElementById('costosDEnvio').innerText= "$" + costoEnvio;
     }
-    document.getElementById("precioTotal").innerHTML= parseFloat((subtotal).toFixed(2)) + parseFloat((costoEnvio).toFixed(2));
-    document.getElementById('costosDEnvio').innerText= costoEnvio;
-
 
 }
      
-  /* funcion para mostrar el porcentaje */
+  /* funcion para mostrar el porcentaje 
 
   let porcentaje = document.getElementsByTagName("input").value;
  
@@ -105,7 +106,7 @@ function subtotales() {
             }
     
           }
-    }
+    }  */
 
     function setCarritoID(id) {
         localStorage.setItem("productosID", id);
