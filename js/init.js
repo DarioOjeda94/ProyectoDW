@@ -44,5 +44,7 @@ let getJSONData = function(url){
 }
       // MOSTRAR USUARIO LOGEADO EN TODAS LAS PESTAÑAS
 
-let usuario = sessionStorage.getItem("user"); 
+let usuario = localStorage.getItem("user"); 
      document.getElementById("username").innerHTML = usuario
+
+     

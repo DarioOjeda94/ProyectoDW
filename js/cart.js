@@ -47,14 +47,7 @@ function mostrarCarrito(array) {
     subtotales()
 
 }
-  /* funcion para borrar 
-for(let i=0; i<borrar.length; i++){
-    borrar[i].addEventListener("click", ()=>{
-        eliminarProducto(i);
-    })
-}
-
-*/
+ 
 
 
         /* Funcion que elimina un producto y actualiza el carrito */
@@ -94,24 +87,12 @@ function subtotales() {
 
 }
      
-  /* funcion para mostrar el porcentaje 
-
-  let porcentaje = document.getElementsByTagName("input").value;
- 
-
-   function porcentajeDeEnvio () {
-    for (let x=0; x< envio.length; x++){
-        if (envio[x].checked){
-              costoEnvio = porcentaje * parseFloat(envio[x].value);
-            }
-    
-          }
-    }  */
 
     function setCarritoID(id) {
         localStorage.setItem("productosID", id);
         window.location = "cart.html"
-    }
+    } 
+    
 
     /* Funcion que habilita y deshabilita las formas de pago */
 
@@ -155,15 +136,14 @@ function subtotales() {
         else {
             document.getElementById("click-aqui").classList.remove("invalid-color");
             document.getElementById("error").style.display = "none";
+    
         }
-        console.log("validacion correcta !!")
+       
+        console.log("validacion realizada!!")
         return res;
     }
       
-    function validar2(){
-        document.getElementById("click-aqui").classList.remove("invalid-color");
-        document.getElementById("error").style.display = "none";
-    }
+       
 
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -175,40 +155,50 @@ function subtotales() {
                 mostrarCarrito(cart_products)
                 console.log(cart_products)
             }
-            
+
+             // Boton de finalizar compra, realiza la validacion y si esta todo correcto avisa que la compra fue realizada! //
+
             document.getElementById("finalizarCompra").addEventListener("click", evento=> { 
 
                 if (!validacion() || !this.checkValidity()){
                     evento.preventDefault();
                     evento.stopPropagation();
                 }
-                else {
-                    Swal.fire(
-                        'Su compra ha sido realizada con exito!',
-                        '',
-                         'success'
-                          )
 
-                }
                 document.body.classList.add('was-validated');
 
                 let eventos=['change', 'input'];
     
-                eventos.forEach( evento=> {document.body.addEventListener(evento, validacion)})
-     
-              
-                
-                
+                eventos.forEach( evento=> {document.body.addEventListener(evento, validacion)})  
+
+                if((validacion() === true || this.checkValidity() === true)){
+                    
+
+                        Swal.fire(
+                            'Su compra ha sido realizada con exito!',
+                            '',
+                             'success'
+                              )
+                    
+                }
             })
+
+
+                // Boton de eliminar, elimina un producto del carrito //
             document.getElementById("eliminar").addEventListener("click", ()=>{
                 eliminarProducto()
             })
+
+            // Radio button de modal de forma de pago //
             document.getElementById("TB").addEventListener("click", ()=>{
                 habilitar()
-            } )
+                
+            })
             document.getElementById("TDC").addEventListener("click", ()=>{
                 habilitar()
-            } )
+                
+            })
+        
         
         })
 

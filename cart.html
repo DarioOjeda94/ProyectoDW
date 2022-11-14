@@ -14,13 +14,7 @@
 </head>
 <style>
   .gradient-custom {
-    /* fallback for old browsers */
-    background: #6a11cb;
-
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
   }
 
@@ -79,7 +73,7 @@
   <main>
     <!-- Template carrito -->
     <section class="h-100 gradient-custom">
-      <div class="container py-5">
+      <div class="container py-5 needs-validation" novalidate>
         <div class="row d-flex justify-content-center my-4">
           <div class="col-md-8">
             <div class="card mb-4">
@@ -105,20 +99,22 @@
               </div><br>
               <h5><strong>Dirección de envío</strong></h5>
               <br>
-              <div class="needs-validation row g-1" novalidate>
+            <form action="" class="needs-validation" novalidate>
+              <div class=" row g-1" >
                 <div class="col-sm-6">
-                  <input type="text" placeholder="Calle" id="calle" required>
+                  <input type="text" class="form-control" placeholder="Calle" style="width: 6cm;" id="calle" required>
                   <div class="invalid-feedback">Debe ingresar una calle</div>
                 </div>
                 <div class="col-sm-6">
-                  <input type="text" placeholder="Numero" style="margin-right: 3cm ;" id="numero" required>
-                  <div class="invalid-feedback">Debe ingresar un numero</div>
+                  <input type="text" placeholder="Numero" class="form-control" style="width: 6cm; margin-left: 1cm ;" id="numero" required>
+                  <div class="invalid-feedback" style="margin-left: 1cm ;">Debe ingresar un numero</div>
                 </div><br><br>
                 <div class="col-sm-6">
-                  <input type="text" placeholder="Esquina" id="esquina" required>
+                  <input type="text" placeholder="Esquina" class="form-control" style="width: 6cm;" id="esquina" required>
                   <div class="invalid-feedback">Debe ingresar una esquina</div>
                 </div>
               </div>
+            </form>
             </div>
           </div>
 
@@ -130,9 +126,9 @@
               </div>
 
               <div>
-                <span>Subtotal: <span id="sub" style="margin-left: 13cm;" onclick="subtotales()"></span></span><hr>
-                <span>Costos de envío: <span id="costosDEnvio" style="margin-left: 13cm;" onclick="subtotales()"></span></span><hr>
-                <span>Precio total: <span  id="precioTotal" style="margin-left: 13cm;" onclick="subtotales()"> </span></span>
+                <span>Subtotal: <span  id="sub" style="margin-left: 13cm;" onclick="subtotales()"></span></span><hr>
+                <span>Costos de envío: <span id="costosDEnvio" style="margin-left: 11.5cm;" onclick="subtotales()"></span></span><hr>
+                <span>Precio total: <span  id="precioTotal" style="margin-left: 12.4cm;" onclick="subtotales()"> </span></span>
               </div><br>
               <h5><strong>Forma de pago</strong></h5><br>
               
@@ -140,12 +136,15 @@
               <!-- modal de forma de pago  -->
 
               <!-- Button trigger modal -->
+            <form action="" class="needs-validation" novalidate>
               <div>
-                <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="click-aqui">Haz click aqui para seleccionar forma de pago</a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="" id="click-aqui">Haz click aqui para seleccionar forma de pago</a>
+
                 <span class="invalid-feedback" id="error">
                  Debe seleccionar una forma de pago  
                 </span>
               </div>
+            </form>
               
 
                 <!-- Modal -->

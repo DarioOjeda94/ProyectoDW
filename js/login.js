@@ -3,14 +3,14 @@ function login(){
     let usuario = document.getElementById("username").value
     let contraseña = document.getElementById("contraseña").value 
     
-    // funcion localStorage para que gurde los datos del usuario en el servidor!
+    // funcion que gurda los datos del usuario en el localStorage!
     
     if (usuario === "" || contraseña === ""){
         Swal.fire("Debe ingresar usuario y contraseña");
     } else {
-        sessionStorage.setItem("user", usuario)
+        localStorage.setItem("usuario", usuario)
         location.href = "index.html";
-        document.getElementById("ingresar").style.display = "none"
+        
     }
     
     }
