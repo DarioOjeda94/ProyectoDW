@@ -5,76 +5,84 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  
+
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Link de autenticacion de gooogle -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="192317670378-1u7okctgf2i5d9knp4pqqqtfh7ih4knt.apps.googleusercontent.com">
- 
+  <meta name="google-signin-client_id"
+    content="192317670378-1u7okctgf2i5d9knp4pqqqtfh7ih4knt.apps.googleusercontent.com">
+
   <style>
-    body{
+    body {
       background-image: url("img/carrito_fondo.jpg");
       background-repeat: no-repeat;
-      background-size: cover; 
+      background-size: cover;
     }
+
     .conteiner {
-     background-color: rgba(255, 255, 255, 0.363);
-     border-radius: 15px;
-     backdrop-filter: blur(2px);
-     margin: auto;
-     margin-left: 44%;
-     margin-top: 100px;
-     height: 70vh;
-     width: 50vh;
-    
-     
-     box-shadow: 0px 10px 20px 5px rgba(245, 245, 245, 0.74);
-     display: flex;
-     justify-content: center;
-     align-items: center;
+      background-color: rgba(255, 255, 255, 0.363);
+      border-radius: 15px;
+      backdrop-filter: blur(2px);
+      margin: auto;
+      margin-left: 44%;
+      margin-top: 100px;
+      height: 70vh;
+      width: 50vh;
+
+
+      box-shadow: 0px 10px 20px 5px rgba(245, 245, 245, 0.74);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .btn_submit{
-      color:black;   
+    .btn_submit {
+      color: black;
     }
-   #ingresar{
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-   }
 
+    #ingresar {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+    }
   </style>
 </head>
 
-<body> 
+<body>
 
   <!-- Cuadro de registro, email y contraseña 
    -->
-<div class="conteiner" id="centro">
- <div class="container text-center">
-   <div class="login-box">
-    <h2 class="text-center py-5 " id="ingresar" > Inicio de sesión </h2> <br>
-      <label for="username"><input type="text" id="username" placeholder="username" class="form-control "></label><br><br>
-      <label for="password"><input type="password" id="contraseña" placeholder="contraseña" class="form-control"></label><br><br>
+  <div class="conteiner" id="centro">
+      <div class="container text-center needs-validation" novalidate>
+        <div class="login-box">
+          <h2 class="text-center py-5 " id="ingresar"> Inicio de sesión </h2> <br>
+          <div id="error" class="invalid-feedback">
+           <strong> Debe ingresar un email.</strong>
+          </div>
+          <label for="email"><input type="email" id="username" placeholder="Email" class="form-control" required></label><br><br>
+          <div id="error2" class="invalid-feedback">
+           <strong> Debe ingresar una contraseña </strong>
+          </div>
+          <label for="password"><input type="password" id="contraseña" placeholder="Contraseña" class="form-control" required></label><br><br>
 
-      <button class="btn btn-warning" id="inicio">Ingresar</button><br><br>
-       <!-- boton de login con google -->
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <!-- ---------- -->
-    </div>
-   </div>
+
+          <button class="btn btn-warning" id="inicio">Ingresar</button><br><br>
+          <!-- boton de login con google -->
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          <!-- ---------- -->
+        </div>
+      </div>
   </div>
 
-  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
       </p>
-      
-       
-     
+
+
+
     </div>
   </footer>
   <script src="js/login.js"></script>

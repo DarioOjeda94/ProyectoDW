@@ -44,24 +44,25 @@ background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-success hidden" href="login.html">Login</a>
+          <li class="nav-item" id="ingresar">
+            <a class="nav-link text-danger" href="login.html"><strong>Login</strong></a>
           </li>
         </ul>
       </div>
-      <!-- Menú desplegable  -->
-      <div class="btn-group">
-        <button type="button" id="username" class="btn btn-dark nav-link"><a href="login.html"></a>Iniciar sesion</button>
-        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="visually-hidden">Toggle Dropdown</span>
+       <!-- Menú desplegable  -->
+
+       <div class="dropdown" style="margin-left: 2cm;">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="username" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown button
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-          <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+          <li><a class="dropdown-item" id="perfil" href="my-profile.html">Mi perfil</a></li>
+          <hr class="dropdown-divider">
+          <li><a class="dropdown-item" style="background-color: rgb(253, 121, 121) ;" id="logout" href="login.html">Cerrar sesion</a></li>
         </ul>
       </div>
+      <!-- ---------------------------------- -->
     </div>
   </nav>
   <main class="pb-5">

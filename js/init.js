@@ -42,9 +42,41 @@ let getJSONData = function(url){
         return result;
     });
 }
-      // MOSTRAR USUARIO LOGEADO EN TODAS LAS PESTAÑAS
 
-let usuario = localStorage.getItem("user"); 
-     document.getElementById("username").innerHTML = usuario
+document.addEventListener("DOMContentLoaded", ()=>{
 
-     
+    /* mostrar usuario logueado en la paginas y consola */
+
+    function mostrarUsuario (){
+      let usuario = localStorage.getItem("usuario")
+      document.getElementById("username").innerHTML=usuario
+      console.log(usuario)
+  }
+  mostrarUsuario()
+
+  /* Cada vez que cierras sesion se eliminan los datos del localStorage */
+
+  document.getElementById("logout").addEventListener("click", ()=>{
+    localStorage.removeItem("usuario")
+    
+})
+
+       /* Si hay un usuario logueado en el localStorage se elimina el boton de login y muestra mi perfil, de lo contrario se elimina el boton de logout y no se muestra mi perfil */
+
+    function eliminarBoton(){
+      let btnLogin = document.getElementById("ingresar")
+      let btnLogout = document.getElementById("logout")
+
+       if(localStorage.getItem("usuario")){
+          btnLogin.classList.add("hidden"); 
+          document.getElementById("perfil").classList.remove("hidden");
+       }
+       else {
+          btnLogout.classList.add("hidden");
+          document.getElementById("perfil").classList.add("hidden");
+       }
+  } 
+  eliminarBoton()
+})
+
+  

@@ -1,7 +1,6 @@
 
-let producto = [];
 let imagenes = {};
-let carrito = [];
+let carrito = {};
 // Funcion que muestra el array de los productos ----->
 
 function verProductos(producto) {
@@ -22,21 +21,19 @@ function verProductos(producto) {
         </div>
         <div class="row">`+ cargarFotos(producto.images) + `
         </div> <br>
-        <button onclick="agregarCarrito(imagenes)" class="btn btn-success" id ="agregar" style="width: 50%; margin-left: 5cm; margin-bottom: 1cm;"> Agregar al carrito
+        <button class="btn btn-success" id ="agregar" style="width: 50%; margin-left: 5cm; margin-bottom: 1cm;"> Agregar al carrito
         `
     document.getElementById("contenedor").innerHTML = htmlContentToAppend;
 
 }
 
+// agregar productos al carrito // 
 
-//--------Funcion que agrega los productos al carrito ------>
-
-function agregarCarrito (id){
-    let item = document.getElementById("contenedor");
-    carrito.push(item.value)
-    localStorage.setItem("productosID", JSON.stringify(producto));
-    console.log(id)
- 
+function agregarCarrito(){
+    carrito.push(imagenes)
+    localStorage.setItem("cart", JSON.stringify(carrito))
+    console.log(carrito)
+    console.log(imagenes)
 }
 
 
@@ -72,8 +69,8 @@ function comentarios() {
                 </div>
             </div>
             `
-        document.getElementById("comentarios").innerHTML = htmlContentToAppend;
     }
+    document.getElementById("comentarios").innerHTML = htmlContentToAppend;
 
 }
 
@@ -99,14 +96,14 @@ function mostrarEstrellas(score) {
 function agregarComentario (){
     let dateTime = new Date();
     let year = dateTime.getFullYear();
-    let month = dateTime.getMonth();
+    let month = dateTime.getMonth() + 1;
     let day = dateTime.getDate();
     let hour = dateTime.getHours();
     let minutes = dateTime.getMinutes();
     let seconds = dateTime.getSeconds();
 
     if (month < 10){
-        month = 0 + month;
+        month = 1 + month;
     }
     if ( day < 10){
         day = 0 + day;
@@ -123,19 +120,18 @@ function agregarComentario (){
 
     let nuevosComentarios = {};
 
-    nuevosComentarios.user = document.getElementById("nombre").value;
+    nuevosComentarios.user = localStorage.getItem("usuario")
     nuevosComentarios.description = document.getElementById("comentario").value;
     nuevosComentarios.dateTime = `${year}/${month}/${day} ${hour}:${minutes}:${seconds}`;
     nuevosComentarios.score = document.getElementById("puntaje").value
 
     array.push(nuevosComentarios);
-
-
+   comentarios(array)
 
 }
 
 
-//Funcion que guarda los a ID de los articulos para luego mostrarlos en productos relacionados ------->
+//Funcion que guarda los ID de los articulos para luego mostrarlos en productos relacionados ------->
 function setArticulosID(id) {
     localStorage.setItem("productosID", id);
     window.location = "products-info.html"
@@ -156,38 +152,32 @@ document.addEventListener("DOMContentLoaded", function () {
         if (resultObj.status === "ok") {
             imagenes = resultObj.data
             verProductos(imagenes);
-            console.log(imagenes)
             mostrarRelacionados(imagenes)
-
         }
-
-        document.getElementById("agregar").addEventListener("click", ()=>{
-            location.href=("cart.html")
-            carrito = JSON.parse(localStorage.getItem("productosID"));
-            agregarCarrito(producto)
-            
-        })
-    
-    });
+        
+         document.getElementById("agregar").addEventListener("click",()=>{
+                agregarCarrito();
+            })
+});
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL + productID + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status === "ok") {
             array = resultObj.data
             comentarios(array)
-            console.log(array)
+            document.getElementById("nombre") == localStorage.getItem("usuario")   // En el usuario del comentario aparece el usuario logueado 
         }
-
-        document.getElementById("enviarComentario").addEventListener("click", ()=>{
-            agregarComentario()
-        })
-        comentarios()
         
+        document.getElementById("enviarComentario").addEventListener("click", evento=>{
+        
+               agregarComentario()
+               evento.preventDefault()
+            evento.stopPropagation()
+         })
+        comentarios(array)
 
-    
 
     });
-    
-
+   
 });
 
 

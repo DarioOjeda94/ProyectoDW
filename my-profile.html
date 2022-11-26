@@ -8,14 +8,18 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <style>
-      body {
-    background: #6a11cb;
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-  }
-    .hidden { display: none;
-    }  
+    body {
+      background: #6a11cb;
+      background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+      background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
@@ -37,90 +41,81 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-success hidden" href="login.html">Login</a>
+          <li class="nav-item" id="ingresar">
+            <a class="nav-link text-danger" href="login.html"><strong>Login</strong></a>
           </li>
-          <li class="nav-item" id="logout" >
-            <a class="nav-link text-danger" href="login.html">Cerrar sesión</a>
-          </li>
-          <div class="btn-group">
-            <button type="button" id="username" class="btn btn-dark nav-link"><a href="login.html"></a>Iniciar sesion</button>
-            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
-            </ul>
-          </div>
         </ul>
       </div>
+      <!-- Menú desplegable  -->
+
+      <div class="dropdown" style="margin-left: 2cm;">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="username" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+          <li><a class="dropdown-item" id="perfil" href="my-profile.html">Mi perfil</a></li>
+          <hr class="dropdown-divider">
+          <li><a class="dropdown-item" style="background-color: rgb(253, 121, 121) ;" id="logout"
+              href="login.html">Cerrar sesion</a></li>
+        </ul>
+      </div>
+      <!-- ---------------------------------- -->
     </div>
   </nav>
   <main>
-<div class="container py-5 h-100 gradient-custom">
-  <div class="row d-flex justify-content-center my-4">
-    <div class="col-md-8">
-      <div class="card mb-4 card-body">
-        <div class="card-body ">
-          <h4><strong>Perfil</strong></h4>
-          <hr>
-        <div>
-          <form action="" method="post" class="row g-1 needs-validation" novalidate>
-            <div class="col-sm-6">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" style="width: 7cm;" required>
-              <div class="invalid-feedback">
-                Debe ingresar un nombre.
-              </div> 
+    <div class="container py-5 h-100 gradient-custom">
+      <div class="row d-flex justify-content-center my-4">
+        <div class="col-md-8">
+          <div class="card mb-4 card-body">
+            <div class="card-body ">
+              <h4><strong>Perfil</strong></h4>
+              <hr>
+              <div>
+                <form class="row g-1 needs-validation" id="formulario" novalidate>
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" style="width: 7cm;" required>
+                    <div class="invalid-feedback">
+                      Debe ingresar un nombre.
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Segundo nombre</label>
+                    <input type="text" class="form-control"  id="segNombre" style="width: 7cm;"><br>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" style="width: 7cm;" required>
+                    <div class="invalid-feedback">
+                      Debe ingresar un apellido.
+                    </div> <br>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Segundo apellido</label>
+                    <input type="text" class="form-control"  id="segApellido" style="width: 7cm;"><br>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label" >Email</label>
+                    <input type="email" class="form-control" id="email" style="width: 7cm;" disabled="" required>
+                    <div class="invalid-feedback">
+                      Debe ingresar un email.
+                    </div> <br>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Telefono de contacto</label>
+                    <input type="number" class="form-control"  id="tel" style="width: 7cm;"><br>
+                  </div>
+                  <hr>
+                  <button class="btn btn-primary" type="submit" id="guardar" style="width: 6cm;">Guardar cambios</button>
+                </form>
+              </div>
             </div>
-            <div class="col-sm-6">
-              <label for="nombre" class="form-label">Segundo nombre</label>
-              <input type="text" class="form-control" style="width: 7cm;"><br>
-            </div>
-            <div class="col-sm-6">
-              <label for="nombre" class="form-label">Apellido</label>
-              <input type="text" class="form-control" style="width: 7cm;" required>
-              <div class="invalid-feedback">
-                Debe ingresar un apellido.
-              </div> <br>
-            </div>
-            <div class="col-sm-6">
-              <label for="nombre" class="form-label">Segundo apellido</label>
-              <input type="text" class="form-control" style="width: 7cm;"><br>
-            </div>
-            <div class="col-sm-6">
-              <label for="nombre" class="form-label">Email</label>
-              <input type="email" class="form-control" style="width: 7cm;" required>
-              <div class="invalid-feedback">
-                Debe ingresar un email.
-              </div> <br>
-            </div>
-            <div class="col-sm-6">
-              <label for="nombre" class="form-label">Telefono de contacto</label>
-              <input type="number" class="form-control" style="width: 7cm;"><br>
-            </div>
-            <hr>
-            <button class="btn btn-primary" type="submit" style="width: 6cm;">Guardar cambios</button>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
   </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>

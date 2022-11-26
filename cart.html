@@ -10,23 +10,25 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+
 </head>
 <style>
   .gradient-custom {
-   
+
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
   }
 
   .numero {
     margin-left: 2cm;
   }
-  #codigo{
+
+  #codigo {
     margin-left: 7cm;
     margin-bottom: 4cm;
   }
-  .hidden { display: none;
-    }  
+  .hidden {
+    display: none;
+  }
 </style>
 
 <body>
@@ -47,27 +49,30 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-success hidden " href="login.html">Login</a>
+          <li class="nav-item" id="ingresar">
+            <a class="nav-link text-danger" href="login.html"><strong>Login</strong></a>
           </li>
-          <div class="btn-group">
-            <button type="button" id="username" class="btn btn-dark nav-link"><a href="login.html"></a>Iniciar
-              sesion</button>
-            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
-            </ul>
-          </div>
         </ul>
       </div>
+      </ul>
+      <!-- Menú desplegable  -->
+      <div class="dropdown" style="margin-left: 2cm;">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="username" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+          <li><a class="dropdown-item" id="perfil" href="my-profile.html">Mi perfil</a></li>
+          <hr class="dropdown-divider">
+          <li><a class="dropdown-item" style="background-color: rgb(253, 121, 121) ;" id="logout"
+              href="login.html">Cerrar
+              sesion</a></li>
+        </ul>
+      </div>
+      <!-- ---------------------------------- -->
+    </div>
+
     </div>
   </nav>
   <main>
@@ -80,8 +85,23 @@
               <div class="card-header py-3">
                 <h5 class="mb-0 text-center"><strong>Mi Carrito</strong></h5>
               </div>
-              <div class="card-body table-borderless" id="productoImagen">
-                
+              <div class="card-body table-borderless" >
+                <table class="table">
+                  <thead>
+                      <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Costo</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Subtotal</th>
+                      <th scope="col">Eliminar</th>
+                      </tr>
+                  </thead>
+                  <tbody id="productoImagen">
+
+                  </tbody>
+                </table>
+
               </div>
               <hr>
             </div>
@@ -93,28 +113,31 @@
                 <hr>
               </div>
               <div>
-                <input type="radio" name="envio" class="porciento" value="0.15" id="premium">Premium 2 a 5 días (15%)<br>
+                <input type="radio" name="envio" class="porciento" value="0.15" id="premium">Premium 2 a 5 días
+                (15%)<br>
                 <input type="radio" name="envio" class="porciento" value="0.07">Express 5 a 8 días (7%)<br>
                 <input type="radio" name="envio" class="porciento" value="0.05" checked>Standard 12 a 15 días (5%) <br>
               </div><br>
               <h5><strong>Dirección de envío</strong></h5>
               <br>
-            <form action="" class="needs-validation" novalidate>
-              <div class=" row g-1" >
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" placeholder="Calle" style="width: 6cm;" id="calle" required>
-                  <div class="invalid-feedback">Debe ingresar una calle</div>
+              <form action="" class="needs-validation" novalidate>
+                <div class=" row g-1">
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Calle" style="width: 6cm;" id="calle" required>
+                    <div class="invalid-feedback">Debe ingresar una calle</div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" placeholder="Numero" class="form-control" style="width: 6cm; margin-left: 1cm ;"
+                      id="numero" required>
+                    <div class="invalid-feedback" style="margin-left: 1cm ;">Debe ingresar un numero</div>
+                  </div><br><br>
+                  <div class="col-sm-6">
+                    <input type="text" placeholder="Esquina" class="form-control" style="width: 6cm;" id="esquina"
+                      required>
+                    <div class="invalid-feedback">Debe ingresar una esquina</div>
+                  </div>
                 </div>
-                <div class="col-sm-6">
-                  <input type="text" placeholder="Numero" class="form-control" style="width: 6cm; margin-left: 1cm ;" id="numero" required>
-                  <div class="invalid-feedback" style="margin-left: 1cm ;">Debe ingresar un numero</div>
-                </div><br><br>
-                <div class="col-sm-6">
-                  <input type="text" placeholder="Esquina" class="form-control" style="width: 6cm;" id="esquina" required>
-                  <div class="invalid-feedback">Debe ingresar una esquina</div>
-                </div>
-              </div>
-            </form>
+              </form>
             </div>
           </div>
 
@@ -126,60 +149,71 @@
               </div>
 
               <div>
-                <span>Subtotal: <span  id="sub" style="margin-left: 13cm;" onclick="subtotales()"></span></span><hr>
-                <span>Costos de envío: <span id="costosDEnvio" style="margin-left: 11.5cm;" onclick="subtotales()"></span></span><hr>
-                <span>Precio total: <span  id="precioTotal" style="margin-left: 12.4cm;" onclick="subtotales()"> </span></span>
+                <span>Subtotal: <span id="sub" style="margin-left: 13cm;" onclick="subtotales()"></span></span>
+                <hr>
+                <span>Costos de envío: <span id="costosDEnvio" style="margin-left: 11.5cm;"
+                    onclick="subtotales()"></span></span>
+                <hr>
+                <span>Precio total: <span id="precioTotal" style="margin-left: 12.4cm;" onclick="subtotales()">
+                  </span></span>
               </div><br>
               <h5><strong>Forma de pago</strong></h5><br>
-              
+
 
               <!-- modal de forma de pago  -->
 
               <!-- Button trigger modal -->
-            <form action="" class="needs-validation" novalidate>
-              <div>
-                <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="" id="click-aqui">Haz click aqui para seleccionar forma de pago</a>
+              <form action="" class="needs-validation" novalidate>
+                <div>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="" id="click-aqui">Haz click
+                    aqui para seleccionar forma de pago</a>
 
-                <span class="invalid-feedback" id="error">
-                 Debe seleccionar una forma de pago  
-                </span>
-              </div>
-            </form>
-              
+                  <span class="invalid-feedback" id="error">
+                    Debe seleccionar una forma de pago
+                  </span>
+                </div>
+              </form>
 
-                <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel"><strong>Forma de pago</strong></h1>
-                      </div>
-                      <div class="modal-body">
-                        <input type="radio" name="pago" id="TDC" required> Tarjeta de credito <hr>
-                        <div class="row">
-                          <div class="col-6"> Numero de tarjeta
-                                  <input type="number" class="form-control" id="1" required disabled="" /> 
-                          </div>
-                          <div class="col-6"> Codigo de seg.
-                                  <input type="number" class="form-control" id="2" required disabled=""/> 
-                          </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel"><strong>Forma de pago</strong></h1>
+                    </div>
+                    <div class="modal-body">
+                      <input type="radio" name="pago" id="TDC" required> Tarjeta de credito
+                      <hr>
+                      <div class="row">
+                        <div class="col-6"> Numero de tarjeta
+                          <input type="number" class="form-control" id="1" required disabled="" />
+                        </div>
+                        <div class="col-6"> Codigo de seg.
+                          <input type="number" class="form-control" id="2" required disabled="" />
+                        </div>
                       </div> <br>
-                        Vencimiento (MM/AA) <br>
-                        <input type="month" class="form-control" id="3" style="width: 5.9cm;" required disabled=""><br><br>
+                      Vencimiento (MM/AA) <br>
+                      <input type="month" class="form-control" id="3" style="width: 5.9cm;" required
+                        disabled=""><br><br>
 
-                        <input type="radio" name="pago" id="TB" required>Transferencia bancaria<hr>
-                        Numero de cuenta
-                        <input type="number" class="form-control" id="transferencia" style="width: 5.9cm;" required disabled=""><br>
+                      <input type="radio" name="pago" id="TB" required>Transferencia bancaria
+                      <hr>
+                      Numero de cuenta
+                      <input type="number" class="form-control" id="transferencia" style="width: 5.9cm;" required
+                        disabled=""><br>
 
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-success" id="aceptar" data-bs-dismiss="modal" disabled="">Aceptar</button>
-                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-success" id="aceptar" data-bs-dismiss="modal"
+                        disabled="">Aceptar</button>
                     </div>
                   </div>
-                </div><br>
-                <button class="btn btn-primary" id="finalizarCompra">Finalizar compra</button>
+                </div>
+              </div><br>
+              <button class="btn btn-primary" id="finalizarCompra">Finalizar compra</button>
             </div>
           </div>
         </div>

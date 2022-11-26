@@ -4,8 +4,6 @@ let envio = document.getElementsByName('envio');
 
 let borrar = document.getElementById("eliminar");
 
-let carrito = [];
-
 let cart_products = [];
 
 function mostrarCarrito(array) {
@@ -14,18 +12,7 @@ function mostrarCarrito(array) {
         articles = array[i]
 
         htmlContentToAppend += `
-            <table class="table">
-                <thead>
-                    <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Costo</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Subtotal</th>
-                    <th scope="col">Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
+                
                     <tr>
                     <td><img style="width:100px" src=${articles.image}></td>
                     <td>${articles.name}</td>
@@ -38,8 +25,6 @@ function mostrarCarrito(array) {
                     </td>
                         
                     </tr>
-                </tbody>
-            </table>
             
             `;
     }
@@ -47,16 +32,18 @@ function mostrarCarrito(array) {
     subtotales()
 
 }
- 
+
+
 
 
         /* Funcion que elimina un producto y actualiza el carrito */
 
-function eliminarProducto(i){
-    cart_products.splice(i,1)
-    localStorage.setItem("carrito", JSON.stringify(cart_products))
-    mostrarCarrito(JSON.parse(localStorage.getItem("carrito")));
+function eliminarProducto(){
+    cart_products = [];
+    localStorage.removeItem(cart_products)
+    mostrarCarrito(cart_products)
 }
+
 
         /* Funcion que imprime los subtotales de los productos */
 
@@ -154,7 +141,15 @@ function subtotales() {
                 cart_products = resultObj.data.articles
                 mostrarCarrito(cart_products)
                 console.log(cart_products)
+            // localStorage.setItem("cart", JSON.stringify(cart_products))  // guarda los datos del carrito en localStorage // 
             }
+            let carrito = localStorage.getItem("cart");
+                cart_products.push(carrito)
+                mostrarCarrito(cart_products)
+
+                
+           
+
 
              // Boton de finalizar compra, realiza la validacion y si esta todo correcto avisa que la compra fue realizada! //
 
@@ -201,6 +196,7 @@ function subtotales() {
         
         
         })
+        
 
         
     });
